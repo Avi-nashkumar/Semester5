@@ -24,21 +24,21 @@ string encryption(string text,int key){
 }
 string decryption(string text,int key){
     int len_text= text.length();
-    string output="";
+    string input="";
     for (int i = 0; i < len_text; i++)
     {
-        if(isupper(text[i])){
-            output+=char(int(text[i]-key-65)%26 +65);
+        if(isupper(encryption(text,key)[i])){
+            input+=char(int(encryption(text,key)[i]-key-65)%26 +65);
 
         }
         else
         {
-            output+= char(int(text[i]-key-97)%26 +97);
+            input+= char(int(encryption(text,key)[i]-key-97)%26 +97);
         }
         
         
     }
-    return output;
+    return input;
     
 }
 
