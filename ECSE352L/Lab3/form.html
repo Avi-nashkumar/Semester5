@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet" />
+
+    <title>Vegenere Cipher</title>
+  </head>
+  <body>
+   <center>
+        <h1>Vegener Cipher</h1>
+   </center>
+    
+    <form>
+        <div class="col-lg-4 col-lg-offset-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Cipher Text</label>
+          <input type="text" class="form-control" id="ciphertext" aria-describedby="emailHelp" placeholder="Enter text">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Input Key</label>
+            <input type="text" class="form-control" id="keytext" aria-describedby="emailHelp" placeholder="Enter key">
+          </div>
+
+          <button  class="btn btn-primary" id="encrypt">Encrypt</button>
+      <button  class="btn btn-primary" id="decrypt">Decrypt</button>
+          
+        
+        
+        
+    </div>
+    
+      </form>
+<div>
+      
+      <div>
+          Encryted Text:<span id="output">
+
+
+          </span>
+        </div>
+      
+
+
+      <div>
+       
+        Decrypted Text:<span id="input">
+
+
+        </span>
+       </div>
+
+    
+</div>
+
+
+
+      
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+    
+
+function keyconverter( str, key){
+    console.log(key);
+    
+    for( i=0;i<key.length;i++){
+        if(str.length==i) i=0;
+        if(str.length==key.length) break;
+        else{
+            key+=key[i];
+        }
+    }
+    return key;
+}
+
+function encryption( str, keyword){
+    
+    
+
+    var output="";
+    for( i=0;i<str.length;i++){
+        
+        output+=String.fromCharCode(((keyword.charCodeAt(i)+str.charCodeAt(i))%26)+65);
+        console.log(output);
+    }
+    return output;
+
+}
+function decryption( encryptedtext, keyword){
+    var input="";
+    for( i=0;i<encryptedtext.length;i++){
+        input+=String.fromCharCode(((encryptedtext.charCodeAt(i)-keyword.charCodeAt(i)+26)%26)+65);
+    }
+    return input;
+}
+
+
+var enctext="";
+var dectext="";
+var modifiedkey="";
+
+
+document.getElementById("encrypt").addEventListener('click',(e)=>{
+    console.log("Hello")
+    
+    
+
+    str= document.getElementById("ciphertext").value;
+    key=document.getElementById("keytext").value;
+
+    
+    
+    modifiedkey=keyconverter(str,key);
+    console.log(modifiedkey);
+    enctext=encryption(str,modifiedkey);
+    console.log(enctext);
+    document.getElementById("output").innerHTML=enctext;
+
+    //window.alert(enctext);
+    
+})
+
+
+document.getElementById("decrypt").addEventListener('click',(e)=>{
+    
+    console.log(modifiedkey)
+    console.log(enctext)
+    dectext=decryption(enctext,modifiedkey)
+    document.getElementById("input").innerHTML=dectext;
+   // window.alert(dectext);
+})
+    
+    
+    
+
+
+    
+
+
+   
+  
+
+  
+
+
+  
+  
+  
+  </script>
+
+</body>
+
+</html>
