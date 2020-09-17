@@ -18,21 +18,21 @@ def client_program():
     originalText1(message,c)
 
     while message.lower().strip() != 'bye':
-        client_socket.send(message.encode())  # send message
-        data = client_socket.recv(1024).decode() # receive response
+        client_socket.send(message.encode())  
+        data = client_socket.recv(1024).decode() 
         keyword = input("Enter the Key:")
         keyword = keyword.upper()
         c=generateKey(data,keyword)
         originalText2(data,c)
          
 
-        print('Received from server: ' + data)  # show in terminal
+        print('Received from server: ' + data)  
 
-        message = input(" -> ")  # again take input
+        message = input(" -> ")  
         
 
 
-    client_socket.close()  # close the connection
+    client_socket.close()  
 
 
 if __name__ == '__main__':
