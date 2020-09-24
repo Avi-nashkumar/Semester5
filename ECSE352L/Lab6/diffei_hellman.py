@@ -26,8 +26,21 @@ def computeSession(pk,q,prk):
     return session
 #print(computeSession(10,q,3))
 
+
+#Function to encrypt the text
+
 def encryption(text,sessionKey):
     enctext=""
-    for i in range len(text):
-        enctext= (ord(text[i])+sessionKey)
-    
+    for i in range (0,len(text)):
+        enctext+= chr((ord(text[i])+sessionKey)%26 +65)
+    return enctext
+#print(encryption("HELLO",20))
+
+#Function to decrypt the text
+
+def decryption(cipheredText,sessionKey):
+    dectext=""
+    for i in range (0,len(cipheredText)):
+        dectext+=chr((ord(cipheredText[i])-sessionKey)%26+65)
+    return dectext
+#print(decryption("OLSSV",20))

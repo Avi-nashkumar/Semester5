@@ -1,7 +1,9 @@
-import socket
+
 import socket
 from diffei_hellman import generateKey
 from diffei_hellman import computeSession
+from diffei_hellman import encryption
+from diffei_hellman import decryption
 
 
 def client_program():
@@ -11,20 +13,10 @@ def client_program():
     client_socket = socket.socket()  
     client_socket.connect((host, port))  
 
-    #message = input(" -> ")
-    q=int(input("Enter prime number:"))
-    alpha= int(input("Enter alpha:"))
-    privateKey=int(input("Enter your private key:"))
-    publicKey=generateKey(q,alpha,privateKey) 
-    publicKey=str(publicKey) 
-    client_socket.send(publicKey.encode())
-    
-    message=input('>')
-    
+    message = input(" -> ")  
 
     while message.lower().strip() != 'bye':
-        client_socket.send(message.encode())
-
+        client_socket.send(message.encode())  
         data = client_socket.recv(1024).decode()  
 
         print('Received from server: ' + data)  
@@ -36,3 +28,13 @@ def client_program():
 
 if __name__ == '__main__':
     client_program()
+
+
+
+    # q=int(input("Enter prime number:"))
+    # alpha= int(input("Enter alpha:"))
+    # privateKey=int(input("Enter your private key:"))
+    # publicKey=generateKey(q,alpha,privateKey)
+    # publicKey1= str(publicKey)
+    # return publicKey1
+
