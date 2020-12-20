@@ -31,10 +31,10 @@ def rsaalgorithm(p,q,no):
     dt = dtt % n 
     print("Decrypted text:",str(dt))
 
-p = int(input('Enter the value of p = ')) 
-q = int(input('Enter the value of q = ')) 
-no=int(input('Enter the value of text = '))
-rsaalgorithm(p,q,no)
+#p = int(input('Enter the value of p = ')) 
+#q = int(input('Enter the value of q = ')) 
+#no=int(input('Enter the value of text = '))
+#rsaalgorithm(p,q,no)
 
 
   
